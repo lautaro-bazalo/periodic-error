@@ -1,9 +1,10 @@
-package app_lau
+package main
 
 import (
-	"app-lau/pkg/bootstrap"
-	"github.com/sirupsen/logrus"
+	"appLau/pkg/bootstrap"
 	"os"
+
+	"github.com/sirupsen/logrus"
 )
 
 func main() {

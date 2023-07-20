@@ -1,4 +1,4 @@
-module app-lau
+module appLau
 
 go 1.19
 

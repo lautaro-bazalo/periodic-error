@@ -1,10 +1,11 @@
 package server
 
 import (
-	"app-lau/pkg/routes"
+	"appLau/pkg/routes"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"net/http"
 )
 
 func NewGinHandler() *gin.Engine {

@@ -1,10 +1,11 @@
 package bootstrap
 
 import (
-	"app-lau/pkg/logger"
-	"app-lau/pkg/server"
-	"github.com/sirupsen/logrus"
+	"appLau/pkg/logger"
+	"appLau/pkg/server"
 	"net/http"
+
+	"github.com/sirupsen/logrus"
 )
 
 type application struct {
