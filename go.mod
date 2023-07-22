@@ -1,4 +1,4 @@
-module appLau
+module periodic-error
 
 go 1.19
 

@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"appLau/pkg/strategy"
 	"github.com/sirupsen/logrus"
+	"periodic-error/pkg/strategy"
 )
 
 type logger struct {
@@ -21,7 +21,7 @@ func InitLogger(writerType strategy.StrategyWriter) Logger {
 }
 
 func (l *logger) Write(log *logrus.Logger) {
-	l.writerType.WritePeriodic(log)
+	go l.writerType.WritePeriodic(log)
 }
 func (l *logger) SetWriterType(writerType strategy.StrategyWriter) {
 	l.writerType = writerType

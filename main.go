@@ -1,8 +1,8 @@
 package main
 
 import (
-	"appLau/pkg/bootstrap"
 	"os"
+	"periodic-error/pkg/bootstrap"
 
 	"github.com/sirupsen/logrus"
 )

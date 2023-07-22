@@ -1,11 +1,12 @@
 package routes
 
 import (
-	"appLau/pkg/api"
-	"appLau/pkg/logger"
-	"appLau/pkg/strategy"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"periodic-error/pkg/api"
+	"periodic-error/pkg/logger"
+	"periodic-error/pkg/strategy"
 )
 
 type strategyRouter struct {
@@ -28,20 +29,20 @@ func StrategyRouteHandler(r *gin.RouterGroup, l logger.Logger, logrusLog *logrus
 		strategyWriter: strategyWriter,
 	}
 
-	r.Group("/strategy")
-	r.POST("/:writer", s.PostRouteStrategy)
+	r.Group("/strategy").POST("/:writer", s.PostRouteStrategy)
 
 }
 
 func (sr *strategyRouter) PostRouteStrategy(ctx *gin.Context) {
-	var writerRequest api.WriterRequest
+	var writer api.WriterType
+	writer = api.WriterType(ctx.Param("writer"))
 
-	if err := ctx.ShouldBindJSON(writerRequest); err != nil {
-		_ = ctx.AbortWithError(500, err)
+	if strategyWriter := sr.strategyWriter[writer]; strategyWriter == nil {
+		_ = ctx.AbortWithError(400, fmt.Errorf("unkown strategy writer"))
 		return
+	} else {
+		sr.l.SetWriterType(strategyWriter)
+		sr.l.Write(sr.log)
 	}
-
-	sr.l.SetWriterType(sr.strategyWriter[writerRequest.Writer])
-	sr.l.Write(sr.log)
 
 }

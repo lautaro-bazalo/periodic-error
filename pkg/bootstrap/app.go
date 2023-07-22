@@ -1,10 +1,10 @@
 package bootstrap
 
 import (
-	"appLau/pkg/logger"
-	"appLau/pkg/server"
-	"appLau/pkg/strategy"
 	"net/http"
+	"periodic-error/pkg/logger"
+	"periodic-error/pkg/server"
+	"periodic-error/pkg/strategy"
 
 	"github.com/sirupsen/logrus"
 )
@@ -30,10 +30,14 @@ func NewApplication(l *logrus.Logger) Application {
 }
 
 func (app *application) RunServer() {
+
+	ginHandler := server.NewGinHandler(app.logger, app.log)
+
 	s := &http.Server{
-		Addr:    "9290",
-		Handler: server.NewGinHandler(),
+		Addr:    ":9290",
+		Handler: ginHandler,
 	}
 	go server.StartServer(s, app.log)
 
+	server.ListenShutdownSignal(s, app.log)
 }
