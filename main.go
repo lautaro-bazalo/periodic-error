@@ -12,5 +12,4 @@ func main() {
 	l.SetOutput(os.Stdout)
 	app := bootstrap.NewApplication(l)
 	app.RunServer()
-	app.RunLogger()
 }

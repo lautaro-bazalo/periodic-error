@@ -12,7 +12,6 @@ func NewGinHandler() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	e := gin.New()
 	e.Group("/").GET("health-check", routes.HealthCheck)
-
 	return e
 }
 

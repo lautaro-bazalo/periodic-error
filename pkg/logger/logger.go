@@ -1,26 +1,28 @@
 package logger
 
 import (
+	"appLau/pkg/strategy"
 	"github.com/sirupsen/logrus"
-	"time"
 )
 
 type logger struct {
-	log *logrus.Logger
+	writerType strategy.StrategyWriter
 }
 
 type Logger interface {
-	WritePeriodicError()
+	Write(log *logrus.Logger)
+	SetWriterType(writerType strategy.StrategyWriter)
 }
 
-func NewLogger(log *logrus.Logger) Logger {
+func InitLogger(writerType strategy.StrategyWriter) Logger {
 	return &logger{
-		log: log,
+		writerType: writerType,
 	}
 }
 
-func (l *logger) WritePeriodicError() {
-	for range time.Tick(time.Second * 10) {
-		l.log.Error("Log Error")
-	}
+func (l *logger) Write(log *logrus.Logger) {
+	l.writerType.WritePeriodic(log)
+}
+func (l *logger) SetWriterType(writerType strategy.StrategyWriter) {
+	l.writerType = writerType
 }

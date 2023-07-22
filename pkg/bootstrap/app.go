@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"appLau/pkg/logger"
 	"appLau/pkg/server"
+	"appLau/pkg/strategy"
 	"net/http"
 
 	"github.com/sirupsen/logrus"
@@ -15,12 +16,13 @@ type application struct {
 
 type Application interface {
 	RunServer()
-	RunLogger()
 }
 
 func NewApplication(l *logrus.Logger) Application {
 
-	newLogger := logger.NewLogger(l)
+	writerInfo := &strategy.StrategyInfo{}
+	newLogger := logger.InitLogger(writerInfo)
+
 	return &application{
 		log:    l,
 		logger: newLogger,
@@ -34,8 +36,4 @@ func (app *application) RunServer() {
 	}
 	go server.StartServer(s, app.log)
 
-}
-
-func (app *application) RunLogger() {
-	app.logger.WritePeriodicError()
 }
