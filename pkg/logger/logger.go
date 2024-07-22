@@ -1,8 +1,9 @@
 package logger
 
 import (
-	"github.com/sirupsen/logrus"
 	"periodic-error/pkg/strategy"
+
+	"github.com/sirupsen/logrus"
 )
 
 type logger struct {
