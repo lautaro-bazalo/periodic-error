@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"periodic-error/pkg/strategy"
+	"periodic-error/internal/strategy"
 
 	"github.com/sirupsen/logrus"
 )

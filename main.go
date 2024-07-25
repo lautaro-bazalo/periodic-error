@@ -2,7 +2,7 @@ package main
 
 import (
 	"os"
-	"periodic-error/pkg/bootstrap"
+	"periodic-error/internal/bootstrap"
 
 	"github.com/sirupsen/logrus"
 )

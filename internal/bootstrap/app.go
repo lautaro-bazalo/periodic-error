@@ -2,9 +2,9 @@ package bootstrap
 
 import (
 	"net/http"
-	"periodic-error/pkg/logger"
-	"periodic-error/pkg/server"
-	"periodic-error/pkg/strategy"
+	"periodic-error/internal/logger"
+	"periodic-error/internal/server"
+	"periodic-error/internal/strategy"
 
 	"github.com/sirupsen/logrus"
 )

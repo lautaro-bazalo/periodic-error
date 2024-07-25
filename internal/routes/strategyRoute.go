@@ -2,11 +2,12 @@ package routes
 
 import (
 	"fmt"
+	"periodic-error/internal/api"
+	"periodic-error/internal/logger"
+	"periodic-error/internal/strategy"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"periodic-error/pkg/api"
-	"periodic-error/pkg/logger"
-	"periodic-error/pkg/strategy"
 )
 
 type strategyRouter struct {

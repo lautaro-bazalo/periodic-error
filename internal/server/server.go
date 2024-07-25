@@ -1,17 +1,17 @@
 package server
 
 import (
-	"golang.org/x/net/context"
 	"net/http"
 	"os"
 	"os/signal"
-	"periodic-error/pkg/logger"
-	"periodic-error/pkg/routes"
+	"periodic-error/internal/logger"
+	"periodic-error/internal/routes"
 	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"golang.org/x/net/context"
 )
 
 func NewGinHandler(logg logger.Logger, loggerLogrus *logrus.Logger) *gin.Engine {
